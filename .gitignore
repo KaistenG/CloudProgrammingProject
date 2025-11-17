@@ -1,9 +1,16 @@
 # Terraform
-terraform/.terraform/
-terraform/*.tfstate
-terraform/*.tfstate.backup
+*.tfstate
+*.tfstate.backup
+.terraform/
+.terraform.lock.hcl
 
-# IntelliJ
+# Azure
+*.azure/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDEs
 .idea/
 *.iml
-out/
