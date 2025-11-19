@@ -1,0 +1,51 @@
+name: Deploy Static Website to Azure
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'website/**'
+      - '.github/workflows/deploy.yml'
+  workflow_dispatch:  # Ermöglicht manuelles Triggern
+
+jobs:
+  deploy:
+    name: 'Deploy Website'
+    runs-on: ubuntu-latest
+    
+    steps:
+    # 1. Checkout Code
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+    
+    # 2. Upload Website Files to Azure Storage
+    - name: Upload to Azure Storage
+      uses: azure/CLI@v2
+      with:
+        azcliversion: latest
+        inlineScript: |
+          az storage blob upload-batch \
+            --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT_NAME }} \
+            --account-key ${{ secrets.AZURE_STORAGE_ACCOUNT_KEY }} \
+            --destination '$web' \
+            --source ./website \
+            --overwrite \
+            --content-type 'text/html' \
+            --pattern '*.html'
+          
+          echo "✅ Website erfolgreich deployed!"
+          echo "🌐 URL: https://cppstorageaccount250321.z16.web.core.windows.net"
+    
+    # 3. Deploy Summary
+    - name: Deployment Summary
+      run: |
+        echo "## Deployment erfolgreich! 🚀" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**Website URL:** https://cppstorageaccount250321.z16.web.core.windows.net" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**Deployed Files:**" >> $GITHUB_STEP_SUMMARY
+        echo "- index.html" >> $GITHUB_STEP_SUMMARY
+        echo "- 404.html" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "_Deployed by: ${{ github.actor }}_" >> $GITHUB_STEP_SUMMARY
