@@ -34,13 +34,13 @@ jobs:
             --content-type 'text/html' \
             --pattern '*.html'
           
-          echo "✅ Website erfolgreich deployed!"
-          echo "🌐 URL: https://cppstorageaccount250321.z16.web.core.windows.net"
+          echo "Website erfolgreich deployed!"
+          echo "URL: https://cppstorageaccount250321.z16.web.core.windows.net"
     
     # 3. Deploy Summary
     - name: Deployment Summary
       run: |
-        echo "## Deployment erfolgreich! 🚀" >> $GITHUB_STEP_SUMMARY
+        echo "## Deployment erfolgreich!" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
         echo "**Website URL:** https://cppstorageaccount250321.z16.web.core.windows.net" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
