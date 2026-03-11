@@ -14,7 +14,7 @@ terraform {
     storage_account_name = "cppstorageaccount250321"
     container_name       = "tfstate"
     key                  = "prod.terraform.tfstate"
-  }
+   }
 
 }
 
@@ -36,7 +36,7 @@ resource "azurerm_storage_account" "cpp_sa" {
   resource_group_name      = azurerm_resource_group.cpp_rg.name
   location                 = azurerm_resource_group.cpp_rg.location
   account_tier             = "Standard"
-  account_replication_type = "LRS" # LRS statt GRS für Students (günstiger)
+  account_replication_type = "LRS" # LRS statt GRS für Students
 
   # Aktiviert die statische Website
   static_website {
@@ -65,6 +65,7 @@ resource "azurerm_storage_blob" "cpp_blob_index" {
   type                   = "Block"
   source                 = "../website/index.html"
   content_type           = "text/html"
+  content_md5 = filemd5("../website/index.html") # Neu für Hashwert, damit der state Änderungen erkennt auch wenn der Pfad sich nicht ändert.
 }
 
 # Blob für 404.html
@@ -75,4 +76,5 @@ resource "azurerm_storage_blob" "cpp_blob_error" {
   type                   = "Block"
   source                 = "../website/404.html"
   content_type           = "text/html"
+  content_md5 = filemd5("../website/404.html") # Neu für Hashwert, damit der state Änderungen erkennt auch wenn der Pfad sich nicht ändert.
 }

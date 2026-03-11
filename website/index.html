@@ -1,11 +1,78 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
-    <title>Hello World</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terraform Website</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a1628 0%, #1e293b 50%, #0f172a 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .container {
+            text-align: center;
+            padding: 40px;
+            max-width: 800px;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #00d9ff, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #94a3b8;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .footer {
+            margin-top: 50px;
+            color: #64748b;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
 </head>
 <body>
-<h1>Hello World!</h1>
-<p>Willkommen auf unserer statischen Azure-Website.</p>
-<p>Was geht Sarah du tollste Bee</p>
+<div class="container">
+    <h1>Willkommen zu meiner mit Terraform erstellten Website</h1>
+
+    <p class="subtitle">
+        Diese statische Website wurde automatisch auf Microsoft Azure deployed
+        und vollständig als Infrastructure as Code mit Terraform verwaltet.
+    </p>
+
+    <p class="subtitle">
+        Sie ist Bestandteil des Kurses "Cloud Programming" der iu internationale Hochschule.
+    </p>
+
+    <div class="footer">
+        <p>Deployed via Terraform • Hosted on Microsoft Azure</p>
+    </div>
+</div>
 </body>
 </html>
